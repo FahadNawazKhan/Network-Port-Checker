@@ -9,7 +9,7 @@ async function loadIP() {
         const res = await fetch('https://network-port-checker.onrender.com/checkport?port=80')
         const data = await res.json()
 
-        ipInput.value = data.ip
+        ipInput.value = "8.8.8.8" || data.ip
     } catch (err) {
         ipInput.value = "Unable to fetch IP"
     }
