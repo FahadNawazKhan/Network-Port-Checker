@@ -6,7 +6,7 @@ async function loadIP() {
     const ipInput = document.getElementById('ip')
 
     try {
-        const res = await fetch('http://localhost:3000/checkport?port=80')
+        const res = await fetch('https://network-port-checker.onrender.com/checkport?port=80')
         const data = await res.json()
 
         ipInput.value = data.ip
