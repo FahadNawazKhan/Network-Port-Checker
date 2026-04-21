@@ -36,7 +36,7 @@ async function checkPort() {
 
 
     try {
-        const res = await fetch(`http://localhost:3000/checkport?port=${port}`)
+        const res = await fetch(`https://network-port-checker.onrender.com/checkport?port=${port}`)
         const data = await res.json()
 
         statusEl.innerText = `Status: ${data.status}`
@@ -52,7 +52,7 @@ async function checkPort() {
 
     } catch (err) {
         statusEl.innerText = "Status: Error checking port"
-        // statusEl.className = ""
+       
     }
 
 }

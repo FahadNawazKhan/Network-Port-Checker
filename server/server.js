@@ -19,7 +19,7 @@ server.get('/checkport', async (req, res) => {
     try {
         const port = parseInt(req.query.port)
 
-        // validation
+   
         if (!validatePort(port)) {
             return res.status(400).json({
                 success: false,
