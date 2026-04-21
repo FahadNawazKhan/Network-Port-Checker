@@ -36,7 +36,7 @@ server.get('/checkport', async (req, res) => {
             ip = req.socket.remoteAddress
         }
 
-        const status = await checkPort(ip, port)
+        const status = await checkPort('8.8.8.8', 53)
 
         res.json({
             success: true,
