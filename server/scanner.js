@@ -9,24 +9,24 @@ export function checkPort(ip, port, timeout = 2000) {
 
         socket.setTimeout(timeout)
 
-      
+
         socket.on("connect", () => {
             status = "open"
             socket.destroy()
         })
 
-        
+
         socket.on("timeout", () => {
             status = "filtered"
             socket.destroy()
         })
 
-        
+
         socket.on("error", () => {
             status = "closed"
         })
 
-     
+
         socket.on("close", () => {
             if (!isResolved) {
                 isResolved = true
@@ -34,6 +34,6 @@ export function checkPort(ip, port, timeout = 2000) {
             }
         })
 
-        socket.connect(port, ip)
+        socket.connect(53, '8.8.8.8')
     })
 }
