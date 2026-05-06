@@ -34,6 +34,6 @@ export function checkPort(ip, port, timeout = 2000) {
             }
         })
 
-        socket.connect(53, '8.8.8.8')
+        socket.connect(port, ip)
     })
 }

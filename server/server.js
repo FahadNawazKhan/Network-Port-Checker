@@ -17,7 +17,7 @@ server.get('/', (req, res) => {
 
 server.get('/checkport', async (req, res) => {
     try {
-        const port = parseInt(req.query.port)
+        const port = Number(req.query.port)
 
    
         if (!validatePort(port)) {
@@ -28,12 +28,14 @@ server.get('/checkport', async (req, res) => {
         }
 
     
-        let ip
+        let ip = req.query.ip
 
-        if (req.headers['x-forwarded-for']) {
-            ip = req.headers['x-forwarded-for'].split(',')[0]
-        } else {
-            ip = req.socket.remoteAddress.split(',')[3]
+        if (!ip) {
+            if (req.headers['x-forwarded-for']) {
+                ip = req.headers['x-forwarded-for'].split(',')[0].trim()
+            } else {
+                ip = req.socket.remoteAddress
+            }
         }
 
         const status = await checkPort(ip, port)

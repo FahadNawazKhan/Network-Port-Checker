@@ -1,3 +1,7 @@
+const API_BASE = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:3000'
+  : 'https://network-port-checker.onrender.com';
+
 const checkBtn = document.getElementById('btn')
 
 checkBtn.addEventListener('click', checkPort)
@@ -6,7 +10,7 @@ async function loadIP() {
     const ipInput = document.getElementById('ip')
 
     try {
-        const res = await fetch('https://network-port-checker.onrender.com/checkport?port=80')
+        const res = await fetch(`${API_BASE}/checkport?port=80`)
         const data = await res.json()
 
         ipInput.value =  data.ip
@@ -26,6 +30,7 @@ async function checkPort() {
     const button = document.querySelector("button")
 
     const port = portInput.value
+    const ip = ipEl.value
 
     if (!port) {
         statusEl.innerText = "Status: Enter a valid port"
@@ -36,7 +41,12 @@ async function checkPort() {
 
 
     try {
-        const res = await fetch(`https://network-port-checker.onrender.com/checkport?port=${port}`)
+        let url = `${API_BASE}/checkport?port=${port}`
+        if (ip && ip !== "Unable to fetch IP") {
+            url += `&ip=${encodeURIComponent(ip)}`
+        }
+        
+        const res = await fetch(url)
         const data = await res.json()
 
         statusEl.innerText = `Status: ${data.status}`
