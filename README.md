@@ -2,6 +2,8 @@
 
 A minimal full-stack tool to check whether a TCP port is open, closed, or filtered.
 
+<img width="959" height="478" alt="prtcheckr" src="https://github.com/user-attachments/assets/4b02afe9-96ee-43ea-afa7-742e5f1a8de8" />
+
 ---
 
 ## Features
